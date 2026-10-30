@@ -8,7 +8,7 @@
 ## 1. 模組化規則庫索引（`.claude/rules/` 與 `.claude/workflows/`）
 
 - **Python 環境與套件同步規範**：@[.claude/rules/python-environment.md](.claude/rules/python-environment.md)
-  - 綁定專案虛擬環境（`{{ENV_NAME}}`），第三方依賴新增嚴格採 `uv add --active <pkg>` 雙寫同步 `pyproject.toml` 與規則檔。
+  - 綁定專案虛擬環境（`market-radar`），第三方依賴新增嚴格採 `uv add --active <pkg>` 雙寫同步 `pyproject.toml` 與規則檔。
 - **Git 結構化提交與 PR 流程規範**：@[.claude/rules/git-commit-workflow.md](.claude/rules/git-commit-workflow.md)
   - 提交一律走 `committer.py`，採 Feature Branch + PR + GitHub Actions CI + Merge Commit（`--merge`）合併回 `main`。
 - **教學導師角色與互動綱領**：@[.claude/rules/teaching-persona.md](.claude/rules/teaching-persona.md)

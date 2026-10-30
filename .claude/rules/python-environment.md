@@ -6,8 +6,8 @@
 
 ## 1. 執行環境標準
 
-- **虛擬環境**：`{{ENV_NAME}}`
-- **Python 版本**：`{{PYTHON_VERSION}}`
+- **虛擬環境**：`market-radar`
+- **Python 版本**：`3.13`
 - **依賴管理工具**：`uv`（速度快、具備跨平台 lock 機制）
 
 ---
@@ -33,7 +33,7 @@
 
 ```toml
 [project]
-name = "{{PROJECT_NAME}}"
+name = "market-radar"
 version = "0.1.0"
 description = "Project initialized from HachiTsai/agent-repo-template"
 readme = "README.md"

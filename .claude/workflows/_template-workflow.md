@@ -1,6 +1,6 @@
 # [工作流名稱] 標準作業程序 (SOP)
 
-本工作流為 `{{PROJECT_NAME}}` 之標準作業程序（SOP），規格收斂於 Git REPO 作為單一真實來源（SSOT）。任何 Agent（Claude Code、Antigravity）或自動化平台均直接指向本文件執行，確保跨介面邏輯完全同步。
+本工作流為 `market-radar` 之標準作業程序（SOP），規格收斂於 Git REPO 作為單一真實來源（SSOT）。任何 Agent（Claude Code、Antigravity）或自動化平台均直接指向本文件執行，確保跨介面邏輯完全同步。
 
 ---
 
@@ -23,7 +23,7 @@
 ## 2. 執行前置與安全邊界
 
 - **工作目錄**：REPO 根目錄。
-- **環境綁定**：綁定專案虛擬環境（`{{ENV_NAME}}`，Python `{{PYTHON_VERSION}}`）。
+- **環境綁定**：綁定專案虛擬環境（`market-radar`，Python `3.13`）。
 - **前置動作**：
   1. `git pull --ff-only origin main`（確保本地與遠端主幹完全同步）。
   2. 檢查必要腳本是否存在（例如 `.claude/skills/...` 或 `scripts/...`）。
