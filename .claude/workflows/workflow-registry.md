@@ -23,9 +23,9 @@
 
 | ID | 流程名稱 | 類型 | 平台 | 觸發時機 | 規格文件（SSOT） | 產出與回報 | 健康檢查 / 門禁 |
 | :-- | :-- | :-- | :-- | :-- | :-- | :-- | :-- |
-| `S1` | 每日健康檢查巡檢 (範例) | Schedule | GitHub Actions / 雲端排程 | 平日 09:00 | [`.claude/workflows/_template-workflow.md`](_template-workflow.md) | 巡檢報告 / Slack 通知 | 失敗門檻判定 |
+| `S1` | 全球五大市場財經情報與行情巡檢 | Schedule | GitHub Actions / 本地 CLI | 平日 08:30, 13:45, 16:30, 21:30 | [`.claude/workflows/market-radar-scan.md`](market-radar-scan.md) | Slack 情報卡片 & `seen_news.json` | 至少 3 市場/板塊有效且指標/新聞 >= 5 |
 | `T1` | 依賴升級與環境驗證 (範例) | Task | 本地 CLI / Agent 對話 | 依需求手動觸發 | [`.claude/workflows/_template-workflow.md`](_template-workflow.md) | PR 變更摘要 | 測試全數通過 |
-| `A1` | 新 PR 自動語法與安全審查 (範例) | Automation | Webhook / CI 事件 | PR 開立時觸發 | [`.claude/workflows/_template-workflow.md`](_template-workflow.md) | PR 內嵌審查評論 | CI Quality Gate |
+| `A1` | 新 PR 自動語法與安全審查 | Automation | GitHub Actions CI | PR 開立與推送時觸發 | [`.github/workflows/ci.yml`](../../.github/workflows/ci.yml) | CI 測試與 Ruff 報告 | CI Quality Gate |
 
 > 💡 **類型說明**：
 > - `Schedule`：週期性定時執行（例如 Cron 每天/每週觸發）。
