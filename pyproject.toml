@@ -1,0 +1,22 @@
+[project]
+name = "{{PROJECT_NAME}}"
+version = "0.1.0"
+description = "Project initialized from HachiTsai/agent-repo-template"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "pytest>=8.0.0",
+    "ruff>=0.8.0",
+]
+
+[tool.pytest.ini_options]
+testpaths = [".claude/skills/commit-workflow/scripts/tests", "tests"]
+python_files = ["test_*.py"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+
+[tool.ruff.lint]
+select = ["E", "F", "W"]
+ignore = ["E501"]

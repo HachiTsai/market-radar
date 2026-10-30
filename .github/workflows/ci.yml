@@ -1,0 +1,36 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  lint-and-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install ruff pytest pyyaml
+
+      - name: Run Ruff Lint
+        run: |
+          ruff check .
+
+      - name: Run Pytest
+        run: |
+          pytest -q
+
+      - name: Run Study Notes Tests
+        run: |
+          python -m unittest discover -s .claude/skills/study-notes/scripts/tests -v
