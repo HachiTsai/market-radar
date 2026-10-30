@@ -1,0 +1,46 @@
+name: Market Radar & Slack Alert
+
+on:
+  schedule:
+    # 台灣時間 (UTC+8) 平日 08:30 (美股盤後/台日開盤前)、13:45 (台日收盤)、16:30 (港股收盤/歐股開盤)、21:30 (美股開盤/總經)
+    - cron: '30 0 * * 1-5'
+    - cron: '45 5 * * 1-5'
+    - cron: '30 8 * * 1-5'
+    - cron: '30 13 * * 1-5'
+  workflow_dispatch: # 支援在 GitHub 網頁上手動一鍵點擊執行
+
+permissions:
+  contents: write
+
+jobs:
+  run-market-radar:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v5
+        with:
+          version: "latest"
+
+      - name: Set up Python
+        run: uv python install 3.13
+
+      - name: Install dependencies
+        run: uv sync
+
+      - name: Run Global Market Radar & Slack Dispatch
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        run: uv run python radar_runner.py
+
+      - name: Persist Seen News State
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add seen_news.json
+          git commit -m "chore(state): auto-update rolling seen news ids [skip ci]" || echo "No changes to commit"
+          git push

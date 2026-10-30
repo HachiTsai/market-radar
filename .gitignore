@@ -54,7 +54,9 @@ secrets.*
 
 # Testing & Coverage
 .pytest_cache/
+.ruff_cache/
 .coverage
 htmlcov/
 .tox/
 .nox/
+latest_market_snapshot.json
